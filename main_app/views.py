@@ -7,4 +7,4 @@ def home(request):
     return HttpResponse('<h1>Hi testing :)</h1>')
 
 def about(request):
-    return HttpResponse("<h1>What's 1 of 1?</h1>")
+    return render(request, 'about.html')
