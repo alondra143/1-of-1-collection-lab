@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Fish Details</h1>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ fish.name }}</span>
+    <p>Added: {{ fish.date_added }}</p>
+    <p>Description: {{ fish.description }}</p>
+    {% if fish.age > 5 %}
+      <p>Age: Beyond expected in captivity, beta fish usually have a lifespan of 2-5 years</p>
+    {% else %}
+      <p>Age: {{ fish.age }}</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+    

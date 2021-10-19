@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'collection.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '1of1',
+        'NAME': 'fishies',
     }
 }
 

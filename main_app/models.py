@@ -13,4 +13,4 @@ class Fish(models.Model):
 
     def __str__(self):
         """Unicode representation of Fish."""
-        pass
+        return self.name

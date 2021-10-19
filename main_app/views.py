@@ -1,20 +1,7 @@
 from django.shortcuts import render
-
+from .models import Fish
 from django.http import HttpResponse
 
-# Add the Cat class & list and view function below the imports
-class Cat:  # Note that parens are optional if not inheriting from another class
-  def __init__(self, name, breed, description, age):
-    self.name = name
-    self.breed = breed
-    self.description = description
-    self.age = age
-
-cats = [
-  Cat('Lolo', 'tabby', 'foul little demon', 3),
-  Cat('Sachi', 'tortoise shell', 'diluted tortoise shell', 0),
-  Cat('Raven', 'black tripod', '3 legged cat', 4)
-]
 # Create your views here.
 
 def home(request):
@@ -23,5 +10,10 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-def index(request):
-    return render(request, 'fish/index.html', {'cats': cats})
+def fish_index(request):
+    fishes = Fish.objects.all()
+    return render(request, 'fish/index.html', {'fishes': fishes})
+
+def fish_detail(request, fish_id):
+    fish = Fish.objects.get(id=fish_id)
+    return render(request, 'fish/detail.html', {'fish': fish})
