@@ -26,6 +26,7 @@ class FishCreate(CreateView):
 class FishUpdate(UpdateView):
     model = Fish
     fields = ['age', 'description']
+    
 class FishDelete(DeleteView):
     model = Fish
     success_url ='/fishes/'
