@@ -1,11 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Fish
 from django.http import HttpResponse
 
 # Create your views here.
 
 def home(request):
-    return HttpResponse('<h1>Hi testing :)</h1>')
+    return render(request, 'home.html')
 
 def about(request):
     return render(request, 'about.html')
@@ -17,3 +18,7 @@ def fish_index(request):
 def fish_detail(request, fish_id):
     fish = Fish.objects.get(id=fish_id)
     return render(request, 'fish/detail.html', {'fish': fish})
+
+class FishCreate(CreateView):
+    model = Fish
+    fields = '__all__'

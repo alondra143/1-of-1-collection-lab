@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>Fighting Fish Collector</title>  
 </head>
 <body>
@@ -18,6 +19,8 @@
               <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Beta Fish Collector</a></li>
             </ul>
             <ul class="right">
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="{% url 'fishes_create' %}">Add a Fish</a></li>
               <li><a href="/about">About</a></li>
               <li><a href="/fishes">View All Betas</a></li>
             </ul>
