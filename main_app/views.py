@@ -22,3 +22,10 @@ def fish_detail(request, fish_id):
 class FishCreate(CreateView):
     model = Fish
     fields = '__all__'
+
+class FishUpdate(UpdateView):
+    model = Fish
+    fields = ['age', 'description']
+class FishDelete(DeleteView):
+    model = Fish
+    success_url ='/fishes/'

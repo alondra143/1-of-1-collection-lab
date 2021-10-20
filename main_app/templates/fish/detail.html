@@ -14,6 +14,10 @@
       <p>Age: {{ fish.age }}</p>
     {% endif %}
   </div>
+  <div class="card-action">
+    <a href="{% url 'fish_update' fish.id %}">EDIT</a>
+    <a href="{% url 'fish_delete' fish.id %}">DELETE</a>
+  </div>
 </div>
 {% endblock %}
     
