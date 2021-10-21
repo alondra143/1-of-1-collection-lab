@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Fish Details</h1>
+<h1>DETAILS</h1>
 <div class="row">
   <div class="col s6">
     <div class="card">
@@ -10,7 +10,7 @@
         <p>Added: {{ fish.date_added }}</p>
         <p>Description: {{ fish.description }}</p>
         {% if fish.age > 5 %}
-          <p>Age: Beyond expected in captivity, beta fish usually have a lifespan of 2-5 years</p>
+          <p>Age: Beyond expected in captivity, beta fish usually have a lifespan of 2-5 years, and {{ fish.name }} is {{ fish.age }} years old!</p>
         {% else %}
           <p>Age: {{ fish.age }}</p>
         {% endif %}
@@ -53,6 +53,49 @@
       <input type="submit" value="add feeding" class="btn">
     </form>
 
+  </div>
+</div>
+<hr/>
+<div class="row">
+  <div class="col s6">
+    <h4>TOYS</h4>
+    {% if fish.toys.count %} 
+      {% for toy in fish.toys.all %}
+        <div class="card">
+          <div class="card-content">
+            <div class="card-title">
+              <span class="card-title">
+                <span class="teal-text">{{ toy.name }}: <em>{{ toy.description }}</em></span>
+              </span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>{{ fish.name }} has no toys yet ):</h5>
+    {% endif %}
+  </div>
+  <div class="col s6">
+    <h4>AVAILABLE TO ADD</h4>
+    {% if other_toys.count %}
+      {% for toy in other_toys.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              <span class="teal-text">{{ toy.name}}</span>: <span class="teal-text"><em>{{ toy.description }}</em></span>
+            </span>
+          </div>
+        </div>
+      <div class="card-action">
+        <form action="{% url 'add_toy' fish.id toy.id %}" method="POST">
+          {% csrf_token %}
+          <button type="submit" class="btn">+ + +</button>
+        </form>
+      </div>
+      {% endfor %}
+    {% else %}
+      <h5>{{ fish.name }} has all the toys! :)</h5>
+    {% endif %}    
   </div>
 </div>
 

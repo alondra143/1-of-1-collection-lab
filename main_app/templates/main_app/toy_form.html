@@ -2,6 +2,21 @@
 
 
 {% block content %}
-    
+
+{% if object %}
+    <h1>EDIT <span class="teal-text">{{ object.name }}</span></h1>
+{% else %}
+    <h1>ADD A TOY:</h1>
+{% endif %}
+        
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="+ + +" class="btn">
+</form>
+
+
 {% endblock %}
     

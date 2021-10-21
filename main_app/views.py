@@ -17,10 +17,15 @@ def fish_index(request):
     fishes = Fish.objects.all()
     return render(request, 'fish/index.html', {'fishes': fishes})
 
-def fish_detail(request, fish_id):
-    feeding_form = FeedingForm()
+def fish_detail(request, fish_id): 
     fish = Fish.objects.get(id=fish_id)
-    return render(request, 'fish/detail.html', {'fish': fish, 'feeding_form': feeding_form})
+    not_fish_toys = Toy.objects.exclude(id__in= fish.toys.all().values_list('id'))
+    feeding_form = FeedingForm()
+    return render(request, 'fish/detail.html', {
+        'fish': fish, 
+        'feeding_form': feeding_form, 
+        'other_toys': not_fish_toys,
+        })
 
 class FishCreate(CreateView):
     model = Fish
@@ -33,6 +38,10 @@ class FishUpdate(UpdateView):
 class FishDelete(DeleteView):
     model = Fish
     success_url ='/fishes/'
+
+def add_toy(request, fish_id, toy_id):
+    Fish.objects.get(id=fish_id).toys.add(toy_id)
+    return redirect('detail', fish_id=fish_id)
 
 def add_feeding(request, fish_id):
     form = FeedingForm(request.POST)
