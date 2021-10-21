@@ -2,8 +2,22 @@ from django.db import models
 from django.db.models.fields import IntegerField
 from django.urls import reverse
 from django.core.validators import MaxValueValidator, MinValueValidator, MinValueValidator
-
+TIMES = (
+    ('M', 'Morning'),
+    ('A', 'Afternoon'),
+    ('E', 'Evening'),
+)
 # Create your models here.
+# has to be defined before Fish because it will be referenced
+class Toy(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField(max_length=50)
+
+    def __str__(self):
+        return self.name
+    def get_absolute_url(self):
+        return reverse('toys_detail', kwargs={'pk': self.id})
+
 class Fish(models.Model):
     """Model definition for Fish."""
 
@@ -12,18 +26,15 @@ class Fish(models.Model):
     date_added = models.DateTimeField('date received')
     age = models.IntegerField()
     description = models.TextField(max_length=250)
-
+    toys = models.ManyToManyField(Toy)
+    
     def __str__(self):
         """Unicode representation of Fish."""
         return self.name
     def get_absolute_url(self):
         return reverse('detail', kwargs={'fish_id': self.id})
 
-TIMES = (
-    ('M', 'Morning'),
-    ('A', 'Afternoon'),
-    ('E', 'Evening'),
-)
+
 class Feeding(models.Model):
     date = models.DateField('Date Fed')
     pellets = models.IntegerField(
