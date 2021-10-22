@@ -4,7 +4,7 @@
 {% block content %}
 
 {% if object %}
-    <h1>EDIT <span class="teal-text">{{ object.name }}</span></h1>
+    <h1>EDIT <span class="purple-text text-accent-2">{{ object.name }}</span></h1>
 {% else %}
     <h1>ADD A TOY:</h1>
 {% endif %}
@@ -14,7 +14,7 @@
     <table>
         {{ form.as_table }}
     </table>
-    <input type="submit" value="+ + +" class="btn">
+    <button type="submit" class="btn-floating" style="background-color:rgb(252, 215, 72);"> + </button>
 </form>
 
 

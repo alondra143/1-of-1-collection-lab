@@ -1,7 +1,9 @@
 from django.db import models
 from django.db.models.fields import IntegerField
 from django.urls import reverse
+from datetime import date
 from django.core.validators import MaxValueValidator, MinValueValidator, MinValueValidator
+from django.db.models import Sum
 TIMES = (
     ('M', 'Morning'),
     ('A', 'Afternoon'),
@@ -27,7 +29,7 @@ class Fish(models.Model):
     age = models.IntegerField()
     description = models.TextField(max_length=250)
     toys = models.ManyToManyField(Toy)
-    
+
     def __str__(self):
         """Unicode representation of Fish."""
         return self.name
@@ -54,5 +56,4 @@ class Feeding(models.Model):
 
     def __str__(self):
         return f'{self.pellets} pellets in the {self.get_time_display()} on {self.date}'
-
 

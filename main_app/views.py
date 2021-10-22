@@ -29,7 +29,7 @@ def fish_detail(request, fish_id):
 
 class FishCreate(CreateView):
     model = Fish
-    fields = '__all__'
+    fields = ['name', 'date_added', 'description', 'age']
 
 class FishUpdate(UpdateView):
     model = Fish

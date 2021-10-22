@@ -15,11 +15,12 @@
           <p>Age: {{ fish.age }}</p>
         {% endif %}
       </div>
-      <div class="card-action">
-        <a href="{% url 'fish_update' fish.id %}">EDIT</a>
-        <a href="{% url 'fish_delete' fish.id %}">DELETE</a>
+      <div class="card-action deep-purple accent-1">
+        <a href="{% url 'fish_update' fish.id %}" style="color:whitesmoke">EDIT</a>
+        <a href="{% url 'fish_delete' fish.id %}"" style="color:whitesmoke">DELETE</a>
       </div>
     </div>
+    <div class="card-panel pink-text darken-2-text center-align">{{ fish.name }} can only eat up to 5 pellets a day!</div>
   </div>
   <div class="col s6">
     <table class="striped">
@@ -41,7 +42,7 @@
         {% endfor %}
           
       </tbody>
-    </table>
+    </table>  
   </div>
 </div>
 <div class="row">
@@ -50,7 +51,7 @@
     <form action="{% url 'add_feeding' fish.id %}" method="POST">
       {% csrf_token %}
       {{ feeding_form.as_p }}
-      <input type="submit" value="add feeding" class="btn">
+      <input type="submit" value="add feeding" class="btn" style="background-color:rgb(30,184,210,1);">
     </form>
 
   </div>
@@ -65,7 +66,7 @@
           <div class="card-content">
             <div class="card-title">
               <span class="card-title">
-                <span class="teal-text">{{ toy.name }}: <em>{{ toy.description }}</em></span>
+                <span class="deep-orange-text text-accent-2">{{ toy.name }}: <em>{{ toy.description }}</em></span>
               </span>
             </div>
           </div>
@@ -89,7 +90,7 @@
       <div class="card-action">
         <form action="{% url 'add_toy' fish.id toy.id %}" method="POST">
           {% csrf_token %}
-          <button type="submit" class="btn">+ + +</button>
+          <button type="submit" class="btn-floating" style="background-color:rgb(252, 215, 72);"> + </button>
         </form>
       </div>
       {% endfor %}
